@@ -1,0 +1,10 @@
+ sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_boot]=$plugins/check_disk  -w 20 -c 10 -p /boot" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_disk]=$plugins/check_disk -w 20 -c 10 -p /" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_disk_inodes]=$plugins/check_disk_inodes -w 80% -c 90% -p /" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_procs]=$plugins/check_procs w 70 -c 95 --metric=CPU -v" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_load]=$plugins/check_load -w 1 -c 4" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_memory]=$plugins/check_memory %MEMORY_LIMITS%" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_swap]=$plugins/check_swap -w 5% -c 1%" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_ssh]=$plugins/check_procs -C sshd -w 1:20 -c 1:40" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_zombie]=$plugins/check_procs -s Z -w :5 -c :10" /etc/nagios/nrpe.cfg
+        sudo sed -i "/### MISC SYSTEM METRICS ###/a command[check_cpu_perf]=$plugins/check_cpu_perf -w 80 -c 90" /etc/nagios/nrpe.cfg
