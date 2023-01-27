@@ -1,0 +1,27 @@
+#!/bin/bash
+
+OK=0
+WARNING=1
+CRITICAL=2
+UNKNOWN=3
+
+FILEPATH="/var/log/mysql/error.log"
+ERROR="ERROR"
+
+#File not found case
+if [ ! -r $FILEPATH  ]; then
+
+  printf "UNKNOWN: File $FILEPATH not found\n"
+  exit $UNKNOWN
+fi
+
+grep  $ERROR $FILEPATH
+STATUS=$?
+#echo $STATUS
+if [ $STATUS -eq 0 ]; then
+  printf "CRITICAL: %s found in file %s\n" $ERROR $FILEPATH
+  exit 2
+else
+  printf "OK: %s not found in file %s\n" $ERROR $FILEPATH
+  exit 0
+fi
